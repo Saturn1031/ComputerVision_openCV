@@ -31,14 +31,16 @@ cv2.destroyAllWindows() # 비디오 창 닫기
 # 2 수집된 프레임을 스택(stack)으로 보여주기
 if len(frames) > 0:		# 수집된 이미지가 있으면
     imgs_h = frames[0]
+    imgs_v = frames[0]
     for i in range(1, min(3, len(frames))):	# 최대 3개까지 이어 붙임
         imgs_h = np.hstack((imgs_h, frames[i]))     # 가로로 연결
+        imgs_v = np.vstack((imgs_v, frames[i]))
 
     cv2.imshow('collected images - Hstack', imgs_h) # 연결된 이미지의 크기 출력
-#    cv2.imshow('collected images - Vstack', imgs_v) # 연결된 이미지의 크기 출력
+    cv2.imshow('collected images - Vstack', imgs_v) # 연결된 이미지의 크기 출력
 
     print(imgs_h.shape)
-#    print(imgs_v.shape)
+    print(imgs_v.shape)
 
     cv2.waitKey()
     cv2.destroyAllWindows()

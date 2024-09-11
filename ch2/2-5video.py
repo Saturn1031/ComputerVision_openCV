@@ -3,7 +3,7 @@ import sys
 
 # 비디오 캡처 객체 생성
 cap = cv2.VideoCapture('slow_traffic_small.mp4')    # 비디오 파일
-# cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)    # 웹캠 비디오
+# cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)    # 현재 컴퓨터 웹캠 비디오
 
 if not cap.isOpened():
     sys.exit('동영상 연결 실패')
