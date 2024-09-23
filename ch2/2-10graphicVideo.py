@@ -12,9 +12,14 @@ while True:
         print('프레임 획득에 실패하여 루프를 나갑니다.')
         break
 
-    #    pts = np.array([[180, 100], [190, 210], [300, 340]], dtype=np.int32)
-    #    cv2.polylines(frame, [pts], False, (255, 0, 0), 10)
-    #    cv2.line(frame, (400, 100), (640, 200), (0, 255, 0), 10)
+    pts = np.array([[180, 100], [190, 210], [300, 340]], dtype=np.int32)
+    cv2.polylines(frame, [pts], False, (255, 0, 0), 10)
+    cv2.line(frame, (400, 100), (640, 200), (0, 255, 0), 10)
+
+    # 랜덤 원 그리기
+    y = np.random.rand() * frame.shape[0]    # 0~1 random
+    x = np.random.rand() * frame.shape[1]
+    cv2.circle(frame, (int(x), int(y)), 20, (0, 255, 255), -1)
 
     cv2.imshow('Video display', frame)
 

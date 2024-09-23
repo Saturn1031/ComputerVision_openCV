@@ -11,8 +11,8 @@ def draw(event, x, y, flags, param):  # 마우스 콜백 함수
     # flags는 마우스와 함께 눌리어지는 특수키 : shift, Ctrl, Alt
 
     if event == cv2.EVENT_LBUTTONDOWN:  # 마우스 왼쪽 버튼 클릭했을 때
-        #        if flags&cv2.EVENT_FLAG_SHIFTKEY:  # Shift키를 눌렀을 떄
-        cv2.rectangle(img, (x, y), (x + 200, y + 200), (0, 0, 255), 2)
+        if flags&cv2.EVENT_FLAG_SHIFTKEY:  # Shift키를 눌렀을 떄
+            cv2.rectangle(img, (x, y), (x + 200, y + 200), (0, 0, 255), 2)
     elif event == cv2.EVENT_RBUTTONDOWN:  # 마우스 오른쪽 버튼 클릭했을 때
         cv2.rectangle(img, (x, y), (x + 100, y + 100), (255, 0, 0), 2)
 
