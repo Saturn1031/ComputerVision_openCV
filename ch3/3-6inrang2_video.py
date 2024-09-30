@@ -1,8 +1,8 @@
-import cv2 as cv
+import cv2
 import sys
 
-#cap = cv.VideoCapture(0, cv.CAP_DSHOW)  # 동영상을 가져오는 클래스
-cap = cv.VideoCapture('face2.mp4')
+# cap = cv2.VideoCapture(0, cv.CAP_DSHOW)  # 동영상을 가져오는 클래스
+cap = cv2.VideoCapture('face2.mp4')
 if not cap.isOpened():
     sys.exit('카메라 연결 실패')
 
@@ -12,15 +12,19 @@ while True:  # 무한루프로
         print('프레임 획득에 실패하여 루프를 나갑니다.')
         break
 
-    #hsv_img = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-    #skin_mask = cv.inRange(hsv_img, (0,30,0),(20,180,255))   # skin color 범위
-    #img_skin = cv.bitwise_and(frame, frame, mask=skin_mask)
+    hsv_img = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    # 1 피부색 마스크
+    skin_mask = cv2.inRange(hsv_img, (0, 30, 0), (20, 180, 255))  # skin color 범위
+    # 2 피부색 그대로
+    img_skin = cv2.bitwise_and(frame, frame, mask=skin_mask)
 
-    cv.imshow('skin color detection', img_skin)
+    # cv2.imshow('skin color detection', frame)   # 원본 영상
+    # cv2.imshow('skin color detection', skin_mask)   # 피부색 마스크 (이진화)
+    cv2.imshow('skin color detection', img_skin)    # 피부색 마스크 적용(and)하여 피부색만 출력
 
-    key = cv.waitKey(1)
+    key = cv2.waitKey(1)
     if key == ord('q'):
         break
 
 cap.release()
-cv.destroyAllWindows()
+cv2.destroyAllWindows()
