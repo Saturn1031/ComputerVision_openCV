@@ -9,16 +9,16 @@ if img is None:
 h,w = img.shape[:2]
 gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 canny=cv2.Canny(gray,100,200)
-contours,hierarchy=cv2.findContours(canny,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+contours,hierarchy=cv2.findContours(canny,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)  # 컨투어 구하기
 
 contour=contours[0]
 cv2.drawContours(img,contour,-1,(255,0,255),2)
 cv2.imshow('Contour',img)
 
-m=cv2.moments(contour)
+m=cv2.moments(contour)  # 모멘트는 딕셔너리 형태로 반환됨
 print(m)
-area=m['m00']   # Contour 면적, cv.contourArea(contour)
-cx,cy=m['m10']/area,m['m01']/area
+area=m['m00']   # Contour 면적, cv.contourArea(contour)와 동일
+cx,cy=m['m10']/area,m['m01']/area   # x, y 좌표의 합을 면적으로 나누어 중심 좌표 구함
 perimeter=cv2.arcLength(contour,True)    # Contour 둘레 길이
 roundness=(4.0*np.pi*area)/(perimeter*perimeter)
 print('면적=',area,'\n중점=(',cx,',',cy,')','\n둘레=',perimeter,'\n둥근 정도=',roundness)
