@@ -19,14 +19,14 @@ def shape_detect(c):
         ar = w / float(h)
         # a square will have an aspect ratio that is approximately
         # equal to one, otherwise, the shape is a rectangle
-        shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"
+        shape = "square" if ar >= 0.95 and ar <= 1.05 else "rectangle"  # 정사각형 또는 사각형
     # if the shape is a pentagon, it will have 5 vertices
     elif len(approx) == 5:
         shape = "pentagon"
     elif len(approx) == 10:
         shape = "star"
     else:
-        roundness = (4.0 * np.pi * cv2.contourArea(c)) / (peri * peri)
+        roundness = (4.0 * np.pi * cv2.contourArea(c)) / (peri * peri)  # 둥근 정도 (1에 가까울 수록 원에 가까움)
         if roundness >= 0.85 and roundness <=1.15 :
             shape = "circle"
 
@@ -47,7 +47,7 @@ for contour in contours:
 
     m = cv2.moments(contour)
     area = m['m00']  # Contour 면적, cv.contourArea(contour)
-    cx, cy = int(m['m10'] / area), int(m['m01'] / area)
+    cx, cy = int(m['m10'] / area), int(m['m01'] / area) # x 중점과 y 중점 좌표
     #print(cx,cy,area)
 
     cv2.drawContours(img, [contour], -1, (0, 255, 0), 2)
