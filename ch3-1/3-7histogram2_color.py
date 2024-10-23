@@ -16,3 +16,6 @@ h_b=cv2.calcHist([img],[0],None,[256],[0,256]) # 0번 채널인 B 채널에서 �
 plt.plot(h_b,color='b',marker='.',linewidth=3)   # marker='o'
 
 plt.show()
+
+cv2.waitKey()
+cv2.destroyAllWindows()

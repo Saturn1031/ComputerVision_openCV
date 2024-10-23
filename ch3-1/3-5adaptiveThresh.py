@@ -15,9 +15,9 @@ img_binary=np.hstack((gray,img_binary50, img_binary100, img_binary200))
 cv2.imshow('threshold',img_binary)
 
 # 2. Adaptive threshold : 각 픽셀마다 다른 threshold 값을 계산하여 적용
-#img_adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 51, 7)
-#img_adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 51, 7)
-#cv2.imshow('adaptive threshold',img_adaptive)
+img_adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 51, 7)
+img_adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 51, 7)
+cv2.imshow('adaptive threshold',img_adaptive)
 
 cv2.waitKey()
 cv2.destroyAllWindows()

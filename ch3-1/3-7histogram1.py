@@ -17,3 +17,5 @@ cv2.imshow('Gray image',img_gray)
 
 plt.show()
 
+cv2.waitKey()
+cv2.destroyAllWindows()

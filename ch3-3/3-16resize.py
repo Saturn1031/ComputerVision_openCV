@@ -21,7 +21,7 @@ img_small2 = cv2.resize(img, dsize=(0, 0), fx=0.25, fy=0.25)  # 1/4로 축소, �
 img_small3 = cv2.resize(img, dsize=(0, 0), fx=0.25, fy=0.25, interpolation=cv2.INTER_AREA)  # 1/4로 축소
 
 dst2=np.hstack((img_small1,img_small2,img_small3))
-#cv2.imshow('Resize - zoomout',dst2)
+cv2.imshow('Resize - zoomout',dst2)
 
 cv2.waitKey()
 cv2.destroyAllWindows()
