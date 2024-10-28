@@ -9,8 +9,7 @@ def onCornerHarris(thresh):
     rcorners = []
     for j in range(1, C.shape[0] - 1):  # 비최대 억제
         for i in range(1, C.shape[1] - 1):
-            if CN[j, i] > thresh and sum(
-                    sum(CN[j, i] > CN[j - 1:j + 2, i - 1:i + 2])) == 8:  # 주변 8개와 비교해서 [ji]가 더 큰 값이 8이면, 모든 이웃보다 큰값을 가지면
+            if CN[j, i] > thresh and sum(sum(CN[j, i] > CN[j - 1:j + 2, i - 1:i + 2])) == 8:  # 주변 8개와 비교해서 [ji]가 더 큰 값이 8이면, 모든 이웃보다 큰값을 가지면
                 rcorners.append((i, j))
 
     for pt in rcorners:
@@ -39,9 +38,9 @@ print(C.max(), 0.05 * C.max())
 cv2.imshow('harris detect', img)
 
 # 2 C값에 대한 트랙바
-# thresh = 5  # 코너 응답 임계값
-# onCornerHarris(thresh)
-# cv2.createTrackbar("Threshold", "harris detect", thresh, 30, onCornerHarris)
+thresh = 5  # 코너 응답 임계값
+onCornerHarris(thresh)
+cv2.createTrackbar("Threshold", "harris detect", thresh, 30, onCornerHarris)
 # ("트랙 바 이름", "윈도우 창 제목", 현재값 변수, 최댓값, 콜백 함수)
 
 cv2.waitKey()
