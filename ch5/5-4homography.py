@@ -1,11 +1,11 @@
 import cv2
 import numpy as np
 
-img1= cv2.imread('mot_color70.jpg')[190:350, 440:560] # 버스를 크롭하여 모델 영상으로 사용
-#img1=cv2.imread('books/book_c.jpg')
+# img1= cv2.imread('mot_color70.jpg')[190:350, 440:560] # 버스를 크롭하여 모델 영상으로 사용
+img1=cv2.imread('books/book_b.jpg')
 gray1=cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
-img2=cv2.imread('mot_color83.jpg')			     # 장면 영상
-#img2=cv2.imread('books/books.jpg')
+# img2=cv2.imread('mot_color83.jpg')			     # 장면 영상
+img2=cv2.imread('books/books.jpg')
 gray2=cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
 
 sift=cv2.SIFT_create()

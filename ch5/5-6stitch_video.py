@@ -19,7 +19,7 @@ while True:
         break
 
     #frame = cv2.resize(frame, dsize=(0, 0), fx=0.5, fy=0.5)
-    if i%STEP == 0:		# STEP 번째 프레임
+    if i%STEP == 0:		# STEP 번째 프레임, 20 프레임마다 하나씩
         images.append(frame)
         #cv2.imwrite('.\stitch_images\stitch_img' + str(i) + '.png', frame)  # 이미지 캡처 및 저장
 

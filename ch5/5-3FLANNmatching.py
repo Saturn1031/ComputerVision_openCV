@@ -37,7 +37,7 @@ for nearest1,nearest2 in flann_knn_matches:
 #print(good_match[0].queryIdx,' -- ', good_match[0].trainIdx, ' : ', good_match[0].distance)
 
 img_match=np.empty((max(img1.shape[0],img2.shape[0]),img1.shape[1]+img2.shape[1],3),dtype=np.uint8)
-cv2.drawMatches(img1,kp1,img2,kp2,good_match,img_match,flags=cv2.DrawMatchesFlags_DEFAULT)  # good_match만 그림
+cv2.drawMatches(img1,kp1,img2,kp2,good_match,img_match,flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)  # good_match만 그림
 # cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS, cv2.DrawMatchesFlags_DEFAULT, cv2.DrawMatchesFlags_DRAW_OVER_OUTIMG, cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS, cv2.DrawMatchesFlags_DRAW_RICH_KEYPOINTS
 cv2.imshow('Good Matches', img_match)
 
