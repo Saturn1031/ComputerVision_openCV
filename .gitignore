@@ -325,4 +325,6 @@ $RECYCLE.BIN/
 
 # video file
 *.mp4
+
+# data file
 *.dat
