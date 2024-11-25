@@ -47,6 +47,7 @@ for img in images:
 
 for i in range(len(stickerImgs)):
     cv2.imshow('Face detection with haarcascade' + str(i), stickerImgs[i])
+    cv2.imwrite('./capture/haarcascade_img_' + str(i + 1) + '.png', stickerImgs[i])  # 이미지 캡처 및 저장
 
 cv2.waitKey()
 cv2.destroyAllWindows()
