@@ -40,16 +40,16 @@ for i in range(boxes.shape[2]):
     cv2.putText(img, text, (x, y + 30), cv2.FONT_HERSHEY_PLAIN, 1.5, colors[class_id], 2)
 
     # 2 segmentation : masks
-    # roi = img[y: y2, x: x2]     # 객체 영역 roi
-    # roi_height, roi_width, _ = roi.shape
+    roi = img[y: y2, x: x2]     # 객체 영역 roi
+    roi_height, roi_width, _ = roi.shape
     # Get the mask
-    # mask = masks[i, class_id]
-    # mask = cv2.resize(mask, (roi_width, roi_height))
-    # _, mask = cv2.threshold(mask, 0.5, 255, cv2.THRESH_BINARY)  # mask로 객체 영역 획득
-    # contours, _ = cv2.findContours(np.array(mask, np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)    # 객체 영역의 윤곽선 획득
-    # for cnt in contours:
-    #    cv2.fillPoly(roi, [cnt], colors[class_id])  # 윤곽선 내부 확인 -> segmentation
-    #    img[y: y2, x: x2] = roi
+    mask = masks[i, class_id]
+    mask = cv2.resize(mask, (roi_width, roi_height))
+    _, mask = cv2.threshold(mask, 0.5, 255, cv2.THRESH_BINARY)  # mask로 객체 영역 획득
+    contours, _ = cv2.findContours(np.array(mask, np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)    # 객체 영역의 윤곽선 획득
+    for cnt in contours:
+       cv2.fillPoly(roi, [cnt], colors[class_id])  # 윤곽선 내부 확인 -> segmentation
+       img[y: y2, x: x2] = roi
 
 cv2.imshow("Object detection by mask RCNN", img)
 
