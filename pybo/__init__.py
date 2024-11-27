@@ -4,7 +4,7 @@ import cv2
 from flask import Flask, flash, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 
-from .img_processing import embossing
+from .img_processing import embossing, haar_face, yolo_v3, mask_rcnn
 
 
 def create_app():
@@ -45,7 +45,6 @@ def create_app():
                 result_fname = os.path.splitext(file_name)[0] + "_embossing.jpg"		# 예, eagle_embossing.jpg
                 result_path = os.path.join(basepath, 'result_images', secure_filename(result_fname))
                 fname = os.path.basename(result_path)
-                print(fname)
                 cv2.imwrite(result_path, processed)
                 return render_template('img_result.html', file_name=file_name, result_file=fname)
             elif style == "Stylization":
@@ -89,7 +88,7 @@ def create_app():
                 cv2.imwrite(result_path, processed)
                 return render_template('img_result.html', file_name=file_name, result_file=fname)
             elif style == "FaceDetection":
-                processed = img
+                processed = haar_face(img, basepath + "/data//")
 
                 result_fname = os.path.splitext(file_name)[0] + "_face.jpg"
                 result_path = os.path.join(basepath, 'result_images', secure_filename(result_fname))
@@ -97,7 +96,7 @@ def create_app():
                 cv2.imwrite(result_path, processed)
                 return render_template('img_result.html', file_name=file_name, result_file=fname)
             elif style == "Yolo":
-                processed = img
+                processed = yolo_v3(img, basepath + "/data//")
 
                 result_fname = os.path.splitext(file_name)[0] + "_yolo.jpg"
                 result_path = os.path.join(basepath, 'result_images', secure_filename(result_fname))
@@ -105,7 +104,7 @@ def create_app():
                 cv2.imwrite(result_path, processed)
                 return render_template('img_result.html', file_name=file_name, result_file=fname)
             elif style == "Segmentation":
-                processed = img
+                processed = mask_rcnn(img, basepath + "/data//")
 
                 result_fname = os.path.splitext(file_name)[0] + "_segmentation.jpg"
                 result_path = os.path.join(basepath, 'result_images', secure_filename(result_fname))
